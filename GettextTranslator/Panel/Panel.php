@@ -179,7 +179,9 @@ class Panel extends Nette\Object implements Nette\Diagnostics\IBarPanel
 	 */
 	public static function register(Nette\Application\Application $application, Gettext $translator, Nette\Http\Session $session, Nette\Http\Request $httpRequest, $layout, $height) 
 	{
-		Nette\Diagnostics\Debugger::$bar->addPanel(new static($application, $translator, $session, $httpRequest, $layout, $height));
+		if (is_object(Nette\Diagnostics\Debugger::$bar)) {
+			Nette\Diagnostics\Debugger::$bar->addPanel(new static($application, $translator, $session, $httpRequest, $layout, $height));
+		}
 	}
 
 
